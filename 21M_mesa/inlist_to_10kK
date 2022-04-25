@@ -1,0 +1,44 @@
+
+&star_job
+
+      load_saved_model = .true.
+      load_model_filename = '21M_zams.mod' 
+      
+      pause_before_terminate = .false.
+      save_model_when_terminate = .true.
+      save_model_filename = '21M_10kK.mod'
+      required_termination_code_string(1) = 'log_Teff_lower_limit'
+
+      set_initial_number_retries = .false.
+
+      set_initial_cumulative_energy_error = .true.
+      new_cumulative_energy_error = 0d0
+
+/ ! end of star_job namelist
+
+&eos
+/ !end of eos namelist
+
+&kap
+/ ! end of kap namelist
+
+&controls
+   log_Teff_lower_limit = 4.0
+   
+! Mass loss
+   Dutch_scaling_factor = 0.8
+
+! output controls
+   log_directory = 'LOGS_to_10kK'
+   photo_interval = 50
+   profile_interval = 100
+   history_interval = 1
+   terminal_interval = 10
+   write_header_frequency = 10
+
+/ ! end of controls namelist
+
+
+&pgstar
+             
+/ ! end of pgstar namelist

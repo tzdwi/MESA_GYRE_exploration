@@ -1,0 +1,82 @@
+&constants
+/
+
+&model
+  model_type = 'EVOL'  ! Obtain stellar structure from an evolutionary model
+  file = '../../21M_mesa/LOGS_to_rsg/profile76.data.GSM'    ! File name of the evolutionary model
+  file_format = 'GSM' ! File format of the evolutionary model
+/
+
+!&mode 
+!  l = 0 ! Harmonic degree (radial, no radial modes)
+!/
+
+
+&mode
+  l = 1 ! Harmonic degree
+  m=0 ! No rotation, don't really care about m (get same results)
+/
+
+!&mode
+!  l = 2 ! Harmonic degree and we know we only see l=1
+!  m=0
+!/
+
+
+
+&osc
+  outer_bound = 'UNNO' ! Use Unno's BCs
+  outer_bound_branch = 'F_NEG' ! Outward energy flux
+  nonadiabatic=.TRUE.
+  adiabatic=.FALSE.
+/
+
+&rot
+/
+
+&num
+  diff_scheme = 'MAGNUS_GL2'
+  nad_search='CONTOUR'
+  restrict_roots = .FALSE.
+  n_iter_max = 100
+/
+
+&scan
+  axis = 'REAL'
+  grid_type = 'LINEAR'
+  freq_min = 0.2
+  freq_max = 5.0
+  freq_units = 'CYC_PER_DAY'
+  n_freq = 200          ! Number of frequency points in scan
+/
+
+&scan
+  axis = 'IMAG'
+  grid_type = 'LINEAR'
+  freq_min = -1.0 ! Used to be -0.1
+  freq_max = 2.0 ! Used to be 1.0
+  n_freq = 200
+/
+
+&grid
+  w_osc = 10 ! Oscillatory region weight parameter
+  w_exp = 2  ! Exponential region weight parameter
+  w_ctr = 10 ! Central region weight parameter
+/
+
+
+&ad_output
+
+/
+
+&nad_output
+summary_file = 'summary_76.h5'                         ! File name for summary file
+  summary_item_list = 'l,m,n_pg,n_p,n_g,omega,freq,freq_units,E_norm,
+                       Delta_p, Delta_g' ! Items to appear in summary file
+  detail_template = 'detail_76.l%l.m%m.n%n.h5'             ! File name template for detail files
+  detail_item_list = 'l,m,n_pg,n_p,n_g,omega,prop_type,
+                      x,M_r,xi_r,xi_h,c_1,As,V_2,Gamma_1,
+                      dW_dx,' ! Items to appear in detail files
+  freq_units = 'CYC_PER_DAY'                   	      ! Units of freq output items
+/
+

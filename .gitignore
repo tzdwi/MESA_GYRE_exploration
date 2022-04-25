@@ -81,6 +81,9 @@ target/
 profile_default/
 ipython_config.py
 
+#DS_store
+.DS_store
+
 # pyenv
 .python-version
 
@@ -127,3 +130,12 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+#MESA stuff
+*profile*
+*LOGS*/
+*photo*
+
+#Gyre stuff
+*summary*h5
+*detail*h5

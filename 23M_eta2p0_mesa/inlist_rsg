@@ -1,0 +1,44 @@
+
+&star_job
+
+      load_saved_model = .true.
+      load_model_filename = '../23M_mesa/23M_rsg.mod' 
+      
+      pause_before_terminate = .false.
+      save_model_when_terminate = .true.
+      save_model_filename = '23M_eta2p0_postrsg.mod'
+      required_termination_code_string(1) = 'Teff_upper_limit'
+
+      set_initial_number_retries = .false.
+
+      set_initial_cumulative_energy_error = .true.
+      new_cumulative_energy_error = 0d0
+
+/ ! end of star_job namelist
+
+&eos
+/ !end of eos namelist
+
+&kap
+/ ! end of kap namelist
+
+&controls
+   Teff_upper_limit = 5.2d3 ! K star
+   
+! Mass loss
+   Dutch_scaling_factor = 2.0
+
+! output controls
+   log_directory = 'LOGS_rsg'
+   photo_interval = 50
+   profile_interval = 100
+   history_interval = 1
+   terminal_interval = 10
+   write_header_frequency = 10
+
+/ ! end of controls namelist
+
+
+&pgstar
+             
+/ ! end of pgstar namelist

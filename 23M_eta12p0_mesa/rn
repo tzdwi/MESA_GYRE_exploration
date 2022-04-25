@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# this provides the definition of do_one (run one part of test)
+# do_one [inlist] [output model] [LOGS directory]
+# MESA_DIR=../../..
+source "${MESA_DIR}/star/test_suite/test_suite_helpers"
+
+#do_one inlist_to_zams_header #21M_zams.mod LOGS_start
+
+#do_one inlist_to_10kK_header #21M_10kK.mod LOGS_to_10kK
+
+#do_one inlist_to_rsg_header #21M_rsg.mod LOGS_to_rsg
+#We've already run the model with standard mass loss up to here
+
+do_one inlist_rsg_header #21M_postrsg.mod LOGS_rsg
+
+do_one inlist_postrsg_header #21M_fyps_10kK.mod LOGS_postrsg

@@ -1,0 +1,52 @@
+
+&star_job
+
+      load_saved_model = .true.
+      load_model_filename = '23M_10kK.mod' 
+      
+      pause_before_terminate = .false.
+      save_model_when_terminate = .true.
+      save_model_filename = '23M_rsg.mod'
+      required_termination_code_string(1) = 'Teff_lower_limit'
+
+      set_initial_number_retries = .false.
+
+      set_initial_cumulative_energy_error = .true.
+      new_cumulative_energy_error = 0d0
+
+/ ! end of star_job namelist
+
+&eos
+/ !end of eos namelist
+
+&kap
+/ ! end of kap namelist
+
+&controls
+   Teff_lower_limit = 5.2d3 ! K star
+   
+! Mass loss
+   Dutch_scaling_factor = 0.8
+
+! output controls ! output this section in GYRE compatible mode
+   log_directory = 'LOGS_to_rsg'
+   photo_interval = 50
+   profile_interval = 1
+   max_num_profile_models = 5000
+   write_model_with_profile = .true.
+   model_data_prefix = 'profile_prersg'
+   write_pulse_data_with_profile = .true.
+   pulse_data_format = 'GSM'
+   history_interval = 1
+   terminal_interval = 10
+   write_header_frequency = 10
+   
+ ! make sure we don't move too far along the HR diagram
+ delta_lgTeff_hard_limit = 5d-3
+
+/ ! end of controls namelist
+
+
+&pgstar
+             
+/ ! end of pgstar namelist
